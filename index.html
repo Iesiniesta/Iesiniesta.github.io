@@ -1,76 +1,683 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Página Sencilla</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f4f4f4;
-    }
-    header {
-      background: #333;
-      color: white;
-      padding: 15px;
-      text-align: center;
-    }
-    nav {
-      background: #555;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .container {
-      padding: 20px;
-    }
-    footer {
-      background: #333;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sembrando Seguridad — Infografías</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; background: #f5f5f0; color: #1a1a1a; }
+ 
+  .page-header {
+    background: #1a3a2a;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1rem 1.5rem;
+  }
+  .page-header h1 { font-size: 32px; font-weight: 900; letter-spacing: -0.5px; }
+  .page-header p { font-size: 15px; opacity: .75; margin-top: 6px; }
+ 
+  .nav {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border-bottom: 2px solid #e0e0d8;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-btn {
+    flex: 1;
+    padding: 14px 8px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: #888;
+    border-bottom: 3px solid transparent;
+    transition: all .15s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-btn .ic { font-size: 22px; }
+  .nav-btn:hover { background: #f9f9f7; }
+  .nav-btn.nb0.on { color: #0C447C; border-bottom-color: #378ADD; background: #EBF5FF; }
+  .nav-btn.nb1.on { color: #085041; border-bottom-color: #1D9E75; background: #E1F5EE; }
+  .nav-btn.nb2.on { color: #633806; border-bottom-color: #BA7517; background: #FAEEDA; }
+  .nav-btn.nb3.on { color: #72243E; border-bottom-color: #D4537E; background: #FBEAF0; }
+ 
+  .panel { display: none; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+  .panel.on { display: block; }
+ 
+  .panel-hero {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    border: 2px solid;
+  }
+  .panel-hero .big-ic { font-size: 52px; line-height: 1; }
+  .panel-hero h2 { font-size: 26px; font-weight: 900; }
+  .panel-hero p { font-size: 14px; margin-top: 4px; opacity: .8; }
+  .ph0 { background: #EBF5FF; border-color: #378ADD; color: #0C447C; }
+  .ph1 { background: #E1F5EE; border-color: #1D9E75; color: #085041; }
+  .ph2 { background: #FAEEDA; border-color: #BA7517; color: #633806; }
+  .ph3 { background: #FBEAF0; border-color: #D4537E; color: #72243E; }
+ 
+  .section { margin-bottom: 1.5rem; }
+  .section-title {
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #888;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: #e0e0d8; }
+ 
+  .card {
+    background: #fff;
+    border: 1.5px solid #e0e0d8;
+    border-radius: 14px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1rem;
+  }
+ 
+  .rlist { list-style: none; }
+  .rlist li {
+    font-size: 14px;
+    padding: 7px 0;
+    border-bottom: 1px solid #f0f0e8;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+  .rlist li:last-child { border-bottom: none; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+  .rtext { flex: 1; }
+  .rtext strong { font-weight: 800; display: block; }
+  .rtext span { font-size: 12px; color: #666; }
+  .aut { display: inline-block; font-size: 10px; font-weight: 800; padding: 1px 7px; border-radius: 20px; margin: 3px 2px 0 0; }
+ 
+  .matrix-wrap { overflow-x: auto; }
+  table.matrix { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
+  .matrix th, .matrix td { padding: 9px 8px; border: 1px solid #ddd; text-align: center; }
+  .matrix th { background: #f5f5f0; font-weight: 800; font-size: 12px; }
+  .matrix .rh { background: #f5f5f0; font-weight: 800; text-align: left; }
+  .tv  { background: #d4edda; color: #155724; font-weight: 800; }
+  .tto { background: #b7dfb8; color: #1b5e20; font-weight: 800; }
+  .tm  { background: #fff3cd; color: #856404; font-weight: 800; }
+  .tim { background: #ffd0a0; color: #7a3800; font-weight: 800; }
+  .tin { background: #f8d7da; color: #721c24; font-weight: 800; }
+ 
+  .eval-box {
+    border-left: 4px solid;
+    padding: 10px 14px;
+    border-radius: 0 10px 10px 0;
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .eval-box strong { font-weight: 800; display: block; margin-bottom: 3px; font-size: 14px; }
+ 
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width:600px){ .grid2 { grid-template-columns: 1fr; } }
+ 
+  .mc { border-radius: 12px; padding: 14px; border: 1.5px solid #e0e0d8; }
+  .mc h4 { font-size: 14px; font-weight: 900; margin-bottom: 10px; }
+  .mc ul { list-style: none; }
+  .mc ul li { font-size: 13px; padding: 4px 0 4px 16px; position: relative; line-height: 1.45; border-bottom: 1px solid rgba(0,0,0,.05); }
+  .mc ul li:last-child { border-bottom: none; }
+  .mc ul li::before { content: "▸"; position: absolute; left: 0; font-size: 11px; }
+ 
+  .paliat { background: #f9f9f7; border-radius: 10px; padding: 12px 14px; margin-top: 12px; }
+  .paliat h4 { font-size: 13px; font-weight: 800; margin-bottom: 8px; color: #555; }
+  .paliat ul { list-style: none; }
+  .paliat ul li { font-size: 13px; color: #555; padding: 3px 0 3px 14px; position: relative; }
+  .paliat ul li::before { content: "›"; position: absolute; left: 0; font-weight: 800; }
+ 
+  .qr-box {
+    background: #f0f0e8;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #555;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 1rem;
+  }
+ 
+  .legend {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: 800;
+  }
+  .leg { padding: 3px 10px; border-radius: 20px; }
+ 
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: #aaa;
+    border-top: 1px solid #e0e0d8;
+    margin-top: 2rem;
+  }
+</style>
 </head>
 <body>
-
-  <header>
-    <h1>Bienvenido a mi página</h1>
-    <p>Una web sencilla hecha con HTML y CSS</p>
-  </header>
-
-  <nav>
-    <a href="#">Inicio</a>
-    <a href="#">Sobre mí</a>
-    <a href="#">Contacto</a>
-  </nav>
-
-  <div class="container">
-    <h2>Inicio</h2>
-    <p>Este es un ejemplo de una página web muy básica.</p>
-
-    <h2>Sobre mí</h2>
-    <p>Puedes escribir aquí información sobre ti.</p>
-
-    <h2>Contacto</h2>
-    <p>Email: ejemplo@email.com</p>
+ 
+<div class="page-header">
+  <h1>🌱 Sembrando Seguridad</h1>
+  <p>Proyecto STEAM · Factores de riesgo del huerto escolar · 4 especialidades preventivas</p>
+</div>
+ 
+<nav class="nav">
+  <button class="nav-btn nb0 on" onclick="show(0)"><span class="ic">🛡️</span>Seguridad</button>
+  <button class="nav-btn nb1" onclick="show(1)"><span class="ic">🧼</span>Higiene</button>
+  <button class="nav-btn nb2" onclick="show(2)"><span class="ic">🦴</span>Ergonomía</button>
+  <button class="nav-btn nb3" onclick="show(3)"><span class="ic">🧠</span>Psicosociología</button>
+</nav>
+ 
+<!-- ============================== PANEL 0: SEGURIDAD ============================== -->
+<div class="panel on" id="p0">
+  <div class="panel-hero ph0">
+    <div class="big-ic">🛡️</div>
+    <div>
+      <h2>Seguridad</h2>
+      <p>Manejo de herramientas, entorno físico y accesos — objetivo: cero accidentes</p>
+    </div>
   </div>
-
-  <footer>
-    <p>© 2026 Mi Página Web</p>
-  </footer>
-
+ 
+  <div class="section">
+    <div class="section-title">Paso 1 — Riesgos identificados</div>
+    <div class="card">
+      <ul class="rlist">
+        <li>
+          <span class="dot" style="background:#378ADD"></span>
+          <div class="rtext">
+            <strong>Tropiezos por mangueras mal colocadas</strong>
+            <span>Mangueras fuera de su sitio, en zonas de paso o sin enrollar</span>
+            <div><span class="aut" style="background:#E6F1FB;color:#0C447C">Miriam</span><span class="aut" style="background:#E6F1FB;color:#0C447C">Javier</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#378ADD"></span>
+          <div class="rtext">
+            <strong>Cortes y golpes con herramientas</strong>
+            <span>Tijeras de podar, azada, palas — sin protección o mal almacenadas</span>
+            <div><span class="aut" style="background:#E6F1FB;color:#0C447C">Miriam</span><span class="aut" style="background:#E6F1FB;color:#0C447C">Javier</span><span class="aut" style="background:#E6F1FB;color:#0C447C">Juan</span><span class="aut" style="background:#E6F1FB;color:#0C447C">Jose</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#378ADD"></span>
+          <div class="rtext">
+            <strong>Caídas en escaleras de acceso al huerto</strong>
+            <span>Peldaños irregulares, sin rampa alternativa ni barandillas</span>
+            <div><span class="aut" style="background:#E6F1FB;color:#0C447C">Gema</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#378ADD"></span>
+          <div class="rtext">
+            <strong>Polvo en los ojos al mover tierra</strong>
+            <span>Sin protección ocular durante la remoción o aireado del sustrato</span>
+            <div><span class="aut" style="background:#E6F1FB;color:#0C447C">Nacho López</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#378ADD"></span>
+          <div class="rtext">
+            <strong>Astillas y espinas</strong>
+            <span>Herramientas de madera deterioradas o plantas con espinas sin guantes</span>
+            <div><span class="aut" style="background:#E6F1FB;color:#0C447C">Álvaro</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#378ADD"></span>
+          <div class="rtext">
+            <strong>Caída de árboles cercanos</strong>
+            <span>Árboles con grietas o daños estructurales próximos al área de trabajo</span>
+            <div><span class="aut" style="background:#E6F1FB;color:#0C447C">Luis Miguel</span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+ 
+  <div class="section">
+    <div class="section-title">Paso 2 — Evaluación del riesgo (método semáforo)</div>
+    <div class="card">
+      <div class="matrix-wrap">
+        <table class="matrix">
+          <tr><th>Probabilidad ↓ / Consecuencia →</th><th>Ligeramente dañino</th><th>Dañino</th><th>Extremadamente dañino</th></tr>
+          <tr><td class="rh">Baja</td><td class="tv">Trivial</td><td class="tto">Tolerable</td><td class="tm">Moderado</td></tr>
+          <tr><td class="rh">Media</td><td class="tto">Tolerable</td><td class="tm">Moderado</td><td class="tim">Importante</td></tr>
+          <tr><td class="rh">Alta</td><td class="tm">Moderado</td><td class="tim">Importante</td><td class="tin">Intolerable</td></tr>
+        </table>
+      </div>
+      <div class="legend">
+        <span class="leg tv">Verde — Trivial/Tolerable</span>
+        <span class="leg tm">Amarillo — Moderado</span>
+        <span class="leg tim">Naranja — Importante</span>
+        <span class="leg tin">Rojo — Intolerable</span>
+      </div>
+      <div class="eval-box" style="border-color:#ffd0a0;background:#fff8f0;margin-top:14px">
+        <strong>⚠ Escaleras de acceso — Riesgo moderado-alto (Gema)</strong>
+        Probabilidad <b>media-alta</b> (acceso frecuente y obligatorio) + Consecuencia <b>dañina</b> (esguinces, fracturas) → requiere acción prioritaria.
+      </div>
+      <div class="eval-box" style="border-color:#B5D4F4;background:#EBF5FF;margin-top:8px">
+        <strong>Cortes con tijeras de podar — Riesgo moderado (Jose, Juan)</strong>
+        Probabilidad <b>media</b> + Consecuencia <b>dañina</b> → controlable con EPI y almacenamiento correcto.
+      </div>
+    </div>
+  </div>
+ 
+  <div class="section">
+    <div class="section-title">Paso 3 — Medidas preventivas</div>
+    <div class="card">
+      <div class="grid2">
+        <div class="mc" style="background:#EBF5FF">
+          <h4 style="color:#0C447C">🏗 Medidas colectivas</h4>
+          <ul>
+            <li>Mangueras siempre enrolladas o enterradas (Miriam)</li>
+            <li>Señalizar escaleras + bandas antideslizantes en peldaños (Gema)</li>
+            <li>Instalar barandillas y valorar rampa accesible (Gema)</li>
+            <li>Panel de herramientas con siluetas; guardar tijeras en funda (Jose)</li>
+            <li>Humedecer la tierra antes de moverla para reducir polvo (Nacho L.)</li>
+            <li>Revisión periódica del estado de los árboles cercanos (Luis Miguel)</li>
+            <li>Prohibir correr en la zona de escaleras y herramientas</li>
+          </ul>
+        </div>
+        <div class="mc" style="background:#E6F1FB">
+          <h4 style="color:#0C447C">🧤 EPI individuales</h4>
+          <ul>
+            <li>Guantes de protección mecánica (cortes y astillas)</li>
+            <li>Calzado cerrado con suela antideslizante</li>
+            <li>Gafas protectoras al remover o airear sustrato (Nacho L.)</li>
+            <li>Transportar materiales en varios viajes, sin sobrecarga (Gema)</li>
+            <li>Utilizar tijeras de podar con su funda protectora (Jose)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="paliat">
+        <h4>🩹 Medidas paliativas (Gema)</h4>
+        <ul>
+          <li>Botiquín con desinfectante, tiritas y material básico accesible</li>
+          <li>Caída con posible lesión grave: NO mover a la persona → llamar al 112</li>
+          <li>Comunicar al equipo directivo y registrar el incidente</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- ============================== PANEL 1: HIGIENE ============================== -->
+<div class="panel" id="p1">
+  <div class="panel-hero ph1">
+    <div class="big-ic">🧼</div>
+    <div>
+      <h2>Higiene Industrial</h2>
+      <p>Agentes biológicos, químicos y radiación UV — objetivo: cero enfermedades</p>
+    </div>
+  </div>
+ 
+  <div class="section">
+    <div class="section-title">Paso 1 — Riesgos identificados</div>
+    <div class="card">
+      <ul class="rlist">
+        <li>
+          <span class="dot" style="background:#1D9E75"></span>
+          <div class="rtext">
+            <strong>Picaduras de insectos</strong>
+            <span>Avispas, abejas y mosquitos presentes en el huerto</span>
+            <div><span class="aut" style="background:#E1F5EE;color:#085041">Gema</span><span class="aut" style="background:#E1F5EE;color:#085041">Adrián</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#1D9E75"></span>
+          <div class="rtext">
+            <strong>Insolación y quemaduras solares</strong>
+            <span>Trabajo prolongado al sol sin protección, especialmente en primavera-verano</span>
+            <div><span class="aut" style="background:#E1F5EE;color:#085041">Juan</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#1D9E75"></span>
+          <div class="rtext">
+            <strong>Irritación por fertilizantes o fitosanitarios</strong>
+            <span>Contacto dérmico o inhalación de productos sin protección</span>
+            <div><span class="aut" style="background:#E1F5EE;color:#085041">Álvaro</span><span class="aut" style="background:#E1F5EE;color:#085041">Sofía</span><span class="aut" style="background:#E1F5EE;color:#085041">Luis Miguel</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#1D9E75"></span>
+          <div class="rtext">
+            <strong>Alergias al polen o a plantas</strong>
+            <span>Contacto directo o exposición ambiental a plantas alergénicas</span>
+            <div><span class="aut" style="background:#E1F5EE;color:#085041">Pablo</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#1D9E75"></span>
+          <div class="rtext">
+            <strong>Plagas y enfermedades vegetales</strong>
+            <span>Pulgones, orugas, hongos, bacterias que debilitan los cultivos</span>
+            <div><span class="aut" style="background:#E1F5EE;color:#085041">María</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#1D9E75"></span>
+          <div class="rtext">
+            <strong>Contaminación por falta de higiene de manos</strong>
+            <span>Ingestión accidental de productos de la tierra sin lavado previo</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+ 
+  <div class="section">
+    <div class="section-title">Paso 2 — Evaluación del riesgo</div>
+    <div class="card">
+      <div class="matrix-wrap">
+        <table class="matrix">
+          <tr><th>Probabilidad ↓ / Consecuencia →</th><th>Ligeramente dañino</th><th>Dañino</th><th>Extremadamente dañino</th></tr>
+          <tr><td class="rh">Baja</td><td class="tv">Trivial</td><td class="tto">Tolerable</td><td class="tm">Moderado</td></tr>
+          <tr><td class="rh">Media</td><td class="tto">Tolerable</td><td class="tm">Moderado</td><td class="tim">Importante</td></tr>
+          <tr><td class="rh">Alta</td><td class="tm">Moderado ◀</td><td class="tim">Importante ◀</td><td class="tin">Intolerable</td></tr>
+        </table>
+      </div>
+      <div class="eval-box" style="border-color:#9FE1CB;background:#F0FBF7;margin-top:14px">
+        <strong>Picaduras de avispas — Riesgo moderado (Gema)</strong>
+        Probabilidad <b>alta</b> + Consecuencia <b>ligeramente dañina</b> (en general) → controlable con EPI y revisión previa del terreno.
+      </div>
+      <div class="eval-box" style="border-color:#ffd0a0;background:#fff8f0;margin-top:8px">
+        <strong>⚠ Insolación en verano — Riesgo importante (Juan)</strong>
+        Probabilidad <b>alta</b> en primavera/verano + Consecuencia <b>dañina</b> → planificar horarios y exigir protección solar.
+      </div>
+    </div>
+  </div>
+ 
+  <div class="section">
+    <div class="section-title">Paso 3 — Medidas preventivas</div>
+    <div class="card">
+      <div class="grid2">
+        <div class="mc" style="background:#EDFAF4">
+          <h4 style="color:#085041">🌿 Medidas colectivas</h4>
+          <ul>
+            <li>Revisar terreno antes de desbrozar; control profesional si hay nidos (Gema)</li>
+            <li>No trabajar cerca de nidos visibles ni manipular panales</li>
+            <li>Programar tareas a primera hora, evitar mediodía en verano</li>
+            <li>Mantener el huerto limpio de restos orgánicos</li>
+            <li>Examinar que los productos químicos no sean tóxicos (Luis Miguel)</li>
+            <li>Lavado obligatorio de manos con jabón tras la sesión</li>
+            <li>Zona de sombra y agua fresca accesible</li>
+          </ul>
+        </div>
+        <div class="mc" style="background:#E1F5EE">
+          <h4 style="color:#085041">☀ EPI individuales</h4>
+          <ul>
+            <li>Guantes gruesos, manga larga, calzado cerrado, gorra (Gema)</li>
+            <li>Crema solar mínimo SPF 30 + gafas de sol (Juan)</li>
+            <li>Guantes impermeables + mascarilla para fertilizantes (Álvaro)</li>
+            <li>Leer etiquetas antes de usar cualquier producto (Álvaro)</li>
+            <li>Guardar productos en lugar cerrado y señalizado</li>
+          </ul>
+        </div>
+      </div>
+      <div class="paliat">
+        <h4>🩹 Medidas paliativas — Picadura (Gema)</h4>
+        <ul>
+          <li>Lavar la zona con agua y jabón; aplicar frío local (hielo envuelto en tela)</li>
+          <li>Crema antihistamínica o corticoide suave según indicación sanitaria</li>
+          <li>Vigilar evolución durante las siguientes horas</li>
+          <li>Síntomas graves (hinchazón intensa, dificultad respiratoria) → llamar al 112</li>
+        </ul>
+      </div>
+      <div class="qr-box">
+        <span style="font-size:22px">📱</span>
+        <span><strong>Contenido QR:</strong> Foto del botiquín del huerto + vídeo de primeros auxilios ante una picadura de avispa.</span>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- ============================== PANEL 2: ERGONOMÍA ============================== -->
+<div class="panel" id="p2">
+  <div class="panel-hero ph2">
+    <div class="big-ic">🦴</div>
+    <div>
+      <h2>Ergonomía</h2>
+      <p>Posturas, cargas y diseño del entorno — objetivo: cuidar espalda y articulaciones</p>
+    </div>
+  </div>
+ 
+  <div class="section">
+    <div class="section-title">Paso 1 — Riesgos identificados</div>
+    <div class="card">
+      <ul class="rlist">
+        <li>
+          <span class="dot" style="background:#BA7517"></span>
+          <div class="rtext">
+            <strong>Posturas forzadas continuadas</strong>
+            <span>Agacharse o flexionar la espalda al sembrar, desherbar y recolectar</span>
+            <div><span class="aut" style="background:#FAEEDA;color:#633806">Gema</span><span class="aut" style="background:#FAEEDA;color:#633806">Izan</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#BA7517"></span>
+          <div class="rtext">
+            <strong>Sobreesfuerzo al levantar peso</strong>
+            <span>Sacos de sustrato y garrafas de agua levantados sin técnica correcta</span>
+            <div><span class="aut" style="background:#FAEEDA;color:#633806">Izan</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#BA7517"></span>
+          <div class="rtext">
+            <strong>Movimientos repetitivos</strong>
+            <span>Podar, cavar con azada o el gesto de mano durante largo tiempo</span>
+            <div><span class="aut" style="background:#FAEEDA;color:#633806">Gema</span><span class="aut" style="background:#FAEEDA;color:#633806">Izan</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#BA7517"></span>
+          <div class="rtext">
+            <strong>Dolor lumbar por diseño inadecuado del entorno</strong>
+            <span>Mesas de cultivo a altura incorrecta, especialmente para usuarios con movilidad reducida</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+ 
+  <div class="section">
+    <div class="section-title">Paso 2 — Evaluación del riesgo</div>
+    <div class="card">
+      <div class="matrix-wrap">
+        <table class="matrix">
+          <tr><th>Probabilidad ↓ / Consecuencia →</th><th>Ligeramente dañino</th><th>Dañino</th><th>Extremadamente dañino</th></tr>
+          <tr><td class="rh">Baja</td><td class="tv">Trivial</td><td class="tto">Tolerable</td><td class="tm">Moderado</td></tr>
+          <tr><td class="rh">Media</td><td class="tto">Tolerable</td><td class="tm">Moderado ◀</td><td class="tim">Importante</td></tr>
+          <tr><td class="rh">Alta</td><td class="tm">Moderado</td><td class="tim">Importante</td><td class="tin">Intolerable</td></tr>
+        </table>
+      </div>
+      <div class="eval-box" style="border-color:#FAC775;background:#FFFBF0;margin-top:14px">
+        <strong>Postura forzada continuada — Riesgo moderado (Gema, Izan)</strong>
+        Probabilidad <b>alta</b> (tareas habituales del huerto) + Consecuencia <b>leve-moderada</b> acumulada → pausas y rotación de tareas obligatorias.
+      </div>
+    </div>
+  </div>
+ 
+  <div class="section">
+    <div class="section-title">Paso 3 — Medidas preventivas</div>
+    <div class="card">
+      <div class="grid2">
+        <div class="mc" style="background:#FFFBF0">
+          <h4 style="color:#633806">🪑 Medidas colectivas</h4>
+          <ul>
+            <li>Mesas de cultivo elevadas adaptadas a sillas de ruedas y movilidad reducida</li>
+            <li>Herramientas de mango largo para evitar flexión excesiva (Gema)</li>
+            <li>Herramientas con mango ergonómico o alargado (Izan)</li>
+            <li>Carretilla para mover peso en lugar de cargarlo a mano (Izan, Jose)</li>
+            <li>Rotación de tareas: máx. 20-30 minutos en la misma postura (Gema)</li>
+            <li>Enseñar técnicas de higiene postural a todo el grupo</li>
+          </ul>
+        </div>
+        <div class="mc" style="background:#FAEEDA">
+          <h4 style="color:#633806">🏋 EPI individuales</h4>
+          <ul>
+            <li>Rodilleras acolchadas para trabajo a ras de suelo (Gema, Izan)</li>
+            <li>Técnica de carga: flexionar rodillas, mantener espalda recta (Izan)</li>
+            <li>Faja ergonómica si hay historial de dolor lumbar (Izan)</li>
+            <li>Calzado estable que favorezca la postura correcta (Gema)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="paliat">
+        <h4>🩹 Medidas paliativas</h4>
+        <ul>
+          <li>Estiramientos suaves tras la actividad</li>
+          <li>Dolor persistente → valoración médica</li>
+        </ul>
+      </div>
+      <div class="qr-box">
+        <span style="font-size:22px">📱</span>
+        <span><strong>Contenido QR:</strong> Vídeo tutorial correcto ✅ vs incorrecto ❌ al levantar un saco de tierra.</span>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- ============================== PANEL 3: PSICOSOCIOLOGÍA ============================== -->
+<div class="panel" id="p3">
+  <div class="panel-hero ph3">
+    <div class="big-ic">🧠</div>
+    <div>
+      <h2>Psicosociología</h2>
+      <p>Bienestar emocional, inclusión y organización — objetivo: ambiente seguro y motivador</p>
+    </div>
+  </div>
+ 
+  <div class="section">
+    <div class="section-title">Paso 1 — Riesgos identificados</div>
+    <div class="card">
+      <ul class="rlist">
+        <li>
+          <span class="dot" style="background:#D4537E"></span>
+          <div class="rtext">
+            <strong>Frustración si las plantas mueren o hay conflictos</strong>
+            <span>Impacto emocional en alumnos con necesidades especiales ante fracasos del cultivo</span>
+            <div><span class="aut" style="background:#FBEAF0;color:#72243E">General</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#D4537E"></span>
+          <div class="rtext">
+            <strong>Riesgos externos y vandalismo</strong>
+            <span>Animales (pájaros, roedores, perros, gatos) y posible robo en huerto escolar</span>
+            <div><span class="aut" style="background:#FBEAF0;color:#72243E">María</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#D4537E"></span>
+          <div class="rtext">
+            <strong>Condiciones climáticas adversas</strong>
+            <span>Sequía, heladas, granizo, olas de calor que dañan cultivos y desmotivan</span>
+            <div><span class="aut" style="background:#FBEAF0;color:#72243E">Sofía</span></div>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#D4537E"></span>
+          <div class="rtext">
+            <strong>Falta de autonomía por sobreprotección</strong>
+            <span>Impedir tareas "por miedo a que se lastime" afecta autoestima y desarrollo</span>
+          </div>
+        </li>
+        <li>
+          <span class="dot" style="background:#D4537E"></span>
+          <div class="rtext">
+            <strong>Instrucciones poco claras o ritmo inadaptado</strong>
+            <span>Carga mental y estrés en alumnos con discapacidad intelectual</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+ 
+  <div class="section">
+    <div class="section-title">Paso 2 — Evaluación del riesgo</div>
+    <div class="card">
+      <div class="matrix-wrap">
+        <table class="matrix">
+          <tr><th>Probabilidad ↓ / Consecuencia →</th><th>Ligeramente dañino</th><th>Dañino</th><th>Extremadamente dañino</th></tr>
+          <tr><td class="rh">Baja</td><td class="tv">Trivial</td><td class="tto">Tolerable</td><td class="tm">Moderado</td></tr>
+          <tr><td class="rh">Media</td><td class="tto">Tolerable</td><td class="tm">Moderado</td><td class="tim">Importante</td></tr>
+          <tr><td class="rh">Alta</td><td class="tm">Moderado ◀</td><td class="tim">Importante</td><td class="tin">Intolerable</td></tr>
+        </table>
+      </div>
+      <div class="eval-box" style="border-color:#F4C0D1;background:#FDF5F8;margin-top:14px">
+        <strong>Instrucciones no adaptadas — Riesgo moderado</strong>
+        Probabilidad <b>alta</b> + Consecuencia <b>ligeramente dañina</b> (estrés puntual) → se resuelve con apoyos visuales, pictogramas y guías adaptadas.
+      </div>
+    </div>
+  </div>
+ 
+  <div class="section">
+    <div class="section-title">Paso 3 — Medidas preventivas</div>
+    <div class="card">
+      <div class="grid2">
+        <div class="mc" style="background:#FDF5F8">
+          <h4 style="color:#72243E">💬 Medidas colectivas</h4>
+          <ul>
+            <li>Pictogramas ARASAAC en todas las instrucciones de tareas</li>
+            <li>Sistema de "Parejas de Seguridad": alumno IPE I + alumno con discapacidad</li>
+            <li>Asignación de roles clara para evitar confusión o sobrecarga</li>
+            <li>Proteger el huerto ante accesos de animales no autorizados (María)</li>
+            <li>Plan de contingencia climática: proteger cultivos en temporadas adversas (Sofía)</li>
+          </ul>
+        </div>
+        <div class="mc" style="background:#FBEAF0">
+          <h4 style="color:#72243E">🤝 Medidas individuales</h4>
+          <ul>
+            <li>Gestión del error: "equivocarse es aprender" — ambiente sin juicios</li>
+            <li>Zona de descanso tranquila si el alumno se siente abrumado</li>
+            <li>Permitir la autonomía supervisada para reforzar la autoestima</li>
+            <li>Adaptar el ritmo y la complejidad a cada alumno individualmente</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<footer>
+  Proyecto STEAM "Sembrando Seguridad" · Factores de riesgo elaborados por el alumnado · Para editar en Canva, captura cada pestaña como imagen
+</footer>
+ 
+<script>
+function show(n) {
+  ['p0','p1','p2','p3'].forEach((id, i) => {
+    document.getElementById(id).classList.toggle('on', i === n);
+  });
+  document.querySelectorAll('.nav-btn').forEach((b, i) => b.classList.toggle('on', i === n));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 </body>
 </html>
