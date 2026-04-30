@@ -1,2 +1,2 @@
 # Iesiniesta.github.io
-Pagina web de ies cañada de le encina en iniesta (cuenca)
+Pagina Web de IES Cañada de la Encina en Iniesta (Cuenca)
